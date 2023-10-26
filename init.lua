@@ -217,6 +217,11 @@ require('lazy').setup({
     build = ':TSUpdate',
   },
 
+
+  {
+    'preservim/nerdtree'
+  }
+  
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
   --       Uncomment any of the lines below to enable them.
@@ -598,6 +603,8 @@ cmp.setup {
     { name = 'luasnip' },
   },
 }
+
+require('robinef')
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
