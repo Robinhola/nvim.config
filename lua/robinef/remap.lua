@@ -16,8 +16,8 @@ vim.keymap.set('n', '<leader>Q', '<cmd>quit!<CR>')
 -- Using control
 vim.keymap.set('n', '<c-q>', '<cmd>quit<CR>')
 vim.keymap.set('n', '<c-s>', '<cmd>split<CR>')
-vim.keymap.set('n', '<c-d>', '<cmd>vsplit<CR>')
-vim.keymap.set('n', '<c-x>', '<cmd>write<CR>')
+-- vim.keymap.set('n', '<c-d>', '<cmd>vsplit<CR>')
+-- vim.keymap.set('n', '<c-x>', '<cmd>write<CR>')
 vim.keymap.set('n', '<c-c>', '<escape>')
 -- Copy without erasing
 vim.keymap.set("x", "<leader>p", "\"_dP")
