@@ -21,3 +21,5 @@ vim.keymap.set('n', '<c-s>', '<cmd>split<CR>')
 vim.keymap.set('n', '<c-c>', '<escape>')
 -- Copy without erasing
 vim.keymap.set("x", "<leader>p", "\"_dP")
+
+vim.keymap.set("n", "<leader><CR>", ":!make<CR>")
