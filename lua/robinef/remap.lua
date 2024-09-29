@@ -4,6 +4,7 @@ vim.keymap.set('n', '<leader>fg', '<cmd>Telescope live_grep<CR>')
 vim.keymap.set('n', '<leader>fh', '<cmd>Telescope help_tags<CR>')
 vim.keymap.set('n', '<leader>fr', '<cmd>Telescope lsp_references<CR>')
 vim.keymap.set('n', '<leader>ft', '<cmd>Telescope builtin<CR>')
+vim.keymap.set('n', '<leader>fb', '<cmd>Telescope buffers<CR>')
 vim.keymap.set('n', '<leader>fz', '<cmd>Telescope current_buffer_fuzzy_find<CR>')
 -- NERDTree
 vim.keymap.set('n', '-',     '<cmd>NERDTreeFind<CR>')
@@ -23,3 +24,13 @@ vim.keymap.set('n', '<c-c>', '<escape>')
 vim.keymap.set("x", "<leader>p", "\"_dP")
 
 vim.keymap.set("n", "<leader><CR>", ":!make<CR>")
+
+-- LSP
+vim.keymap.set("n", "<leader>[[", ":lua vim.lsp.buf.hover()<CR>")
+
+
+vim.keymap.set("n", "<leader>e", "<cmd>lua vim.lsp.diagnostic.open_float()<cr>")
+vim.keymap.set("n", "<leader>t", "<cmd>lua vim.lsp.buf.hover()<cr>")
+vim.keymap.set("n", "<leader><cr>", "<cmd>lua vim.diagnostic.goto_next()<cr>")
+vim.keymap.set("n", "<leader>d", "<cmd>lua vim.diagnostic.open_float()<cr>")
+vim.keymap.set("n", "<leader>D", "<cmd>lua vim.diagnostic.goto_prev()<cr>")

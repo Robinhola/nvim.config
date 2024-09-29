@@ -76,8 +76,10 @@ require('lazy').setup({
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
 
+  { "folke/neodev.nvim",     opts = {} },
+
   -- NOTE: This is where your plugins related to LSP can be installed.
-  --  The configuration is done below. Search for lspconfig to find it below.
+  --  The configuration is done below. Search for lspconfig to find it below
   {
     -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
@@ -93,8 +95,12 @@ require('lazy').setup({
       -- Additional lua configuration, makes nvim stuff amazing!
       'folke/neodev.nvim',
     },
+    { import = "robinef.plugins" },
   },
 
+  "williamboman/mason.nvim",
+  "williamboman/mason-lspconfig.nvim",
+  "neovim/nvim-lspconfig",
   {
     -- Autocompletion
     'hrsh7th/nvim-cmp',
@@ -112,7 +118,25 @@ require('lazy').setup({
   },
 
   -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim', opts = {} },
+  {
+    'folke/which-key.nvim',
+    opts = {
+      { "", group = "[C]ode" },
+      { "", group = "[R]ename" },
+      { "", desc = "<leader>h_",  hidden = true },
+      { "", desc = "<leader>r_",  hidden = true },
+      { "", desc = "<leader>s_",  hidden = true },
+      { "", group = "[S]earch" },
+      { "", group = "[W]orkspace" },
+      { "", group = "More git" },
+      { "", group = "[G]it" },
+      { "", desc = "<leader>c_",  hidden = true },
+      { "", desc = "<leader>g_",  hidden = true },
+      { "", group = "[D]ocument" },
+      { "", desc = "<leader>d_",  hidden = true },
+      { "", desc = "<leader>w_",  hidden = true },
+    }
+  },
   {
     -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
@@ -152,14 +176,38 @@ require('lazy').setup({
     },
   },
 
+  -- THEMES
   {
     -- Theme inspired by Atom
     'navarasu/onedark.nvim',
     priority = 1000,
     config = function()
-      vim.cmd.colorscheme 'onedark'
+      -- vim.cmd.colorscheme 'onedark'
     end,
   },
+
+  {
+    "folke/tokyonight.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {},
+    config = function()
+      -- vim.cmd.colorscheme 'tokyonight'
+      -- vim.cmd.colorscheme 'tokyonight-night'
+      -- vim.cmd.colorscheme 'tokyonight-storm'
+      -- vim.cmd.colorscheme 'tokyonight-day'
+      -- vim.cmd.colorscheme 'tokyonight-moon'
+    end,
+  },
+
+  {
+    "ellisonleao/gruvbox.nvim",
+    priority = 1000,
+    config = function()
+      vim.cmd.colorscheme 'gruvbox'
+    end,
+  },
+
 
   {
     -- Set lualine as statusline
@@ -168,7 +216,7 @@ require('lazy').setup({
     opts = {
       options = {
         icons_enabled = false,
-        theme = 'onedark',
+        theme = 'gruvbox',
         component_separators = '|',
         section_separators = '',
       },
@@ -221,7 +269,7 @@ require('lazy').setup({
   {
     'preservim/nerdtree'
   }
-  
+
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
   --       Uncomment any of the lines below to enable them.
@@ -315,6 +363,9 @@ require('telescope').setup {
         ['<C-d>'] = false,
       },
     },
+    file_ignore_patterns = {
+      "_build",
+    },
   },
 }
 
@@ -350,7 +401,7 @@ local function live_grep_git_root()
   local git_root = find_git_root()
   if git_root then
     require('telescope.builtin').live_grep({
-      search_dirs = {git_root},
+      search_dirs = { git_root },
     })
   end
 end
@@ -492,15 +543,22 @@ local on_attach = function(_, bufnr)
 end
 
 -- document existing key chains
-require('which-key').register {
-  ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
-  ['<leader>d'] = { name = '[D]ocument', _ = 'which_key_ignore' },
-  ['<leader>g'] = { name = '[G]it', _ = 'which_key_ignore' },
-  ['<leader>h'] = { name = 'More git', _ = 'which_key_ignore' },
-  ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
-  ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
-  ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
-}
+-- require('which-key').register {
+--   { "<leader>c",  group = "[C]ode" },
+--   { "<leader>c_", hidden = true },
+--   { "<leader>d",  group = "[D]ocument" },
+--   { "<leader>d_", hidden = true },
+--   { "<leader>g",  group = "[G]it" },
+--   { "<leader>g_", hidden = true },
+--   { "<leader>h",  group = "More git" },
+--   { "<leader>h_", hidden = true },
+--   { "<leader>r",  group = "[R]ename" },
+--   { "<leader>r_", hidden = true },
+--   { "<leader>s",  group = "[S]earch" },
+--   { "<leader>s_", hidden = true },
+--   { "<leader>w",  group = "[W]orkspace" },
+--   { "<leader>w_", hidden = true },
+-- }
 
 -- mason-lspconfig requires that these setup functions are called in this order
 -- before setting up the servers.
