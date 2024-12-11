@@ -1,7 +1,7 @@
 require('robinef.plugins')
 require('robinef.remap')
 require('robinef.set')
-require'lspconfig'.ocamlls.setup{}
+require('lspconfig').ocamllsp.setup {}
 
 vim.api.nvim_create_autocmd('BufWritePre', {
   pattern = '*',
